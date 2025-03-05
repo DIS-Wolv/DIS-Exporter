@@ -15,5 +15,11 @@ Private _callInit = {
     };
 };
 
-if(isNil "DISExporter_var_delay") then {DISExporter_var_delay = 5;};
+if (isClass(configFile >> "CfgPatches" >> "cba_settings")) then {
+    ["DISExporter_var_delay", "TIME", ["Time","Time beetween each sending"], "DIS-Exporter", [1, 300, 30], 2] call CBA_fnc_addSetting;
+}
+else {
+    if(isNil "DISExporter_var_delay") then {DISExporter_var_delay = 30;};
+};
+
 [] spawn _callInit;
