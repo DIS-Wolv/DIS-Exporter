@@ -10,7 +10,11 @@
 
 Private _callInit = {
     while {true} do {
-        uisleep DISExporter_var_delay;
+        private _startCount = serverTime;
+        waitUntil {
+            uiSleep 1; 
+            serverTime > _startCount + DISExporter_var_delay
+        };
         [] call DISExporter_fnc_ExportData;
     };
 };
