@@ -38,37 +38,40 @@ extern "C"
 //--- name callExtension function
 int __stdcall RVExtensionArgs(char* output, int outputSize, const char* function, const char** args, int argsCnt)
 {
-	//--- Not used here
-	(void)function;
 
 	if (strcmp(function, "Send") == 0) {
 
+		std::string str = "";
+
 		//*
-		if (argsCnt >= 3) {
+		if (argsCnt >= 2) {
 			std::ofstream outfile;
 			outfile.open(args[1], std::ios_base::app); // append instead of overwrite
-			outfile << args[0] << std::endl; 
-
+			outfile << args[0] << std::endl;
 			outfile.close();
+
+			str += args[0];
+			str += "|";
+			str += args[1];
 
 		} //*/
 
 		//==========Test==========
 		//--- Manually assemble output array
-		int i = 0;
-		std::string str = "[";
+		//int i = 0;
+		//std::string str = "[";
 
-		//--- Each argument can be accessed via args[n]
-		if (argsCnt > 0)
-			str += args[i++];
+		////--- Each argument can be accessed via args[n]
+		//if (argsCnt > 0)
+		//	str += args[i++];
 
-		while (i < argsCnt)
-		{
-			str += ",";
-			str += args[i++];
-		}
+		//while (i < argsCnt)
+		//{
+		//	str += ",";
+		//	str += args[i++];
+		//}
 
-		str += "]";
+		//str += "]";
 
 		//--- Extension result
 		strncpy_s(output, outputSize, str.c_str(), _TRUNCATE);
@@ -77,7 +80,7 @@ int __stdcall RVExtensionArgs(char* output, int outputSize, const char* function
 		return 100;
 	}
 	else {
-		strncpy_s(output, outputSize, "Call sans argument", _TRUNCATE);
+		strncpy_s(output, outputSize, "Function incorrect", _TRUNCATE);
 		return 200;
 	}
 	// Exemple print context
