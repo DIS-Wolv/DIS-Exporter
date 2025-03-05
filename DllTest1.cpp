@@ -5,6 +5,7 @@
 #include <iterator>
 #include <sstream>
 #include <iomanip>
+#include <fstream>
 //#include <socketapi.h>
 
 BOOL APIENTRY DllMain(HMODULE hModule,
@@ -42,11 +43,15 @@ int __stdcall RVExtensionArgs(char* output, int outputSize, const char* function
 
 	if (strcmp(function, "Send") == 0) {
 
-		/*if (argsCnt >= 3) {
-		// create socket
-		// send data
-		// close socket
-		}*/
+		//*
+		if (argsCnt >= 3) {
+			std::ofstream outfile;
+			outfile.open(args[1], std::ios_base::app); // append instead of overwrite
+			outfile << args[0] << std::endl; 
+
+			outfile.close();
+
+		} //*/
 
 		//==========Test==========
 		//--- Manually assemble output array
@@ -63,7 +68,6 @@ int __stdcall RVExtensionArgs(char* output, int outputSize, const char* function
 			str += args[i++];
 		}
 
-		str += ",TEST";
 		str += "]";
 
 		//--- Extension result
