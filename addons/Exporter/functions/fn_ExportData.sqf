@@ -7,12 +7,16 @@
 *
 */
 
+// only server can export data
+if (!isServer) exitWith {};
+
 private _sysTime = systemTime;
 
 private _servName = serverName;
 
 private _worldName = worldName;
 private _briefName = briefingName; // or missionName ?
+private _avergaeFPS = diag_fps;
 
 private _player = count allPlayers;
 private _unitsBlue = count units west;
@@ -26,8 +30,8 @@ private _deadMen = count allDeadMen;
 private _deadVh = (count allDead) - _deadMen; // count allDeadVehicles and dead agents
 
 Private _data = format[
-	"Time:%1;	Server:%2;	Mission:%3;	player:%4;	Blue:%5;	Red:%6;		Ind:%7;		Civ:%8;		Vl:%9;	DeadMen:%10;	DeadVh:%11",
-	_sysTime,	_servName,	_briefName,	_player, 	_unitsBlue,	_unitsRed,	_unitsInd,	_unitsCiv,	_vl,	_deadMen,	_deadVh
+	"Time:%1;	Server:%2;	Mission:%3;	FPS:%4;		player:%5;	Blue:%6;	Red:%7;		Ind:%8;		Civ:%9;		Vl:%10;	DeadMen:%11;	DeadVh:%12",
+	_sysTime,	_servName,	_briefName,	_avergaeFPS,_player, 	_unitsBlue,	_unitsRed,	_unitsInd,	_unitsCiv,	_vl,	_deadMen,	_deadVh
 ];
 
 [_data] call DISExporter_fnc_SendData;
