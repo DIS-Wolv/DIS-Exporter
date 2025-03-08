@@ -1,0 +1,21 @@
+---
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  build_addon:
+    runs-on: ubuntu-latest
+    container: mcoffin/armake2:2e66c92
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Write secret file to disk
+        env:
+          DIS_BIPRIVATEKEY_B64: ${{ secrets.DIS_BIPRIVATEKEY_B64 }}
+        run: |
+          echo "$DIS_BIPRIVATEKEY_B64" | base64 -d > ./tmp/dis.biprivatekey
+
+      - name: Build the mod folder
+        run: ./build_mod.sh ./tmp/dis.biprivatekey
