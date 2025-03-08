@@ -19,3 +19,10 @@ jobs:
 
       - name: Build the mod folder
         run: ./build_mod.sh /tmp/dis.biprivatekey
+
+      - name: Upload mod as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: mod-files
+          path: "@DIS-Exporter/"
+          retention-days: 7
