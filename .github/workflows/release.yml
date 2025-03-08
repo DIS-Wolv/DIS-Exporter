@@ -5,7 +5,7 @@ on:
       - "main"
 
 jobs:
-  build_addon:
+  build:
     runs-on: ubuntu-latest
     container: mcoffin/armake2:2e66c92
     steps:
@@ -26,3 +26,15 @@ jobs:
           name: "@DIS-Exporter"
           path: "@DIS-Exporter/"
           retention-days: 7
+
+  release:
+    runs-on: ubuntu-latest
+    container: steamcmd/steamcmd:alpine-3
+    needs: build
+    steps:
+      - name: Download built mod artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: "@DIS-Exporter"
+      - name: List files in mod folder
+        run: ls -la "@DIS-Exporter/"
