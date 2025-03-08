@@ -15,7 +15,7 @@ jobs:
         env:
           DIS_BIPRIVATEKEY_B64: ${{ secrets.DIS_BIPRIVATEKEY_B64 }}
         run: |
-          echo "$DIS_BIPRIVATEKEY_B64" | base64 -d > ./tmp/dis.biprivatekey
+          echo "$DIS_BIPRIVATEKEY_B64" | base64 -d > /tmp/dis.biprivatekey
 
       - name: Build the mod folder
-        run: ./build_mod.sh ./tmp/dis.biprivatekey
+        run: ./build_mod.sh /tmp/dis.biprivatekey
