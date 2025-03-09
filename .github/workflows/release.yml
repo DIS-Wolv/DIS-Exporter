@@ -40,5 +40,7 @@ jobs:
         env:
           STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
           STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
-        run: |
-          steamcmd "+login ${STEAM_USERNAME} ${STEAM_PASSWORD}" "+exit"
+        run: >
+          steamcmd
+          "+login ${STEAM_USERNAME} ${STEAM_PASSWORD}"
+          "+exit"
