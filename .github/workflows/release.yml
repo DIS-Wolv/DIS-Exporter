@@ -46,7 +46,7 @@ jobs:
           {
           "appid" "107410"
           "publishedfileid" "${WORKSHOP_ID}"
-          "contentfolder" "@DIS-Exporter"
+          "contentfolder" "${pwd}/@DIS-Exporter"
           }
           EOF
       - name: Debug
@@ -60,5 +60,5 @@ jobs:
         run: >
           steamcmd
           "+login ${STEAM_USERNAME} ${STEAM_PASSWORD}"
-          "+workshop_build_item update.vdf"
+          "+workshop_build_item ${pwd}/update.vdf"
           "+exit"
