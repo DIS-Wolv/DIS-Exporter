@@ -36,11 +36,25 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: "@DIS-Exporter"
-      - name: List files in mod folder
+          path: "@DIS-Exporter"
+      - name: Create VDF file
+        env:
+          WORKSHOP_ID: ${{ secrets.WORKSHOP_ID }}
+        run: |
+          cat <<EOF > update.vdf
+          "workshopitem"
+          {
+          "appid" "107410"
+          "publishedfileid" "${WORKSHOP_ID}"
+          "contentfolder" "@DIS-Exporter"
+          }
+          EOF
+      - name: Upload to Steam
         env:
           STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
           STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
         run: >
           steamcmd
           "+login ${STEAM_USERNAME} ${STEAM_PASSWORD}"
+          "+workshop_build_item update.vdf"
           "+exit"
