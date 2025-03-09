@@ -49,6 +49,10 @@ jobs:
           "contentfolder" "@DIS-Exporter"
           }
           EOF
+      - name: Debug
+        run: |
+          cat update.vdf
+          find .
       - name: Upload to Steam
         env:
           STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
