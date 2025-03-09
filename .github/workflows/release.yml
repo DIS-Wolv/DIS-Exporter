@@ -37,4 +37,8 @@ jobs:
         with:
           name: "@DIS-Exporter"
       - name: List files in mod folder
-        run: find .
+        env:
+          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
+          STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
+        run: |
+          steamcmd "+login ${STEAM_USERNAME} ${STEAM_PASSWORD}" "+exit"
