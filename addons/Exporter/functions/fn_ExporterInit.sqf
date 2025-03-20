@@ -45,4 +45,6 @@ else {
     if(isNil "DISExporter_var_port") then {DISExporter_var_port = _defaultPort;};
 };
 
+[True] spawn DISExporter_fnc_ExportData;
 [] spawn _callInit;
+
