@@ -2,3 +2,4 @@
 *.pbo
 *.pbo.*
 @DIS-Exporter
+.csv
