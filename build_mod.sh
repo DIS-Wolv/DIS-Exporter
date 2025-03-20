@@ -11,7 +11,7 @@ fi
 
 KEY_PATH="$1"
 FILES_TO_ADD=(
-    "dis.jpg"
+    "dis.paa"
     "disMoto.jpg"
     "mod.cpp"
     "DllTest1_x64.dll"
