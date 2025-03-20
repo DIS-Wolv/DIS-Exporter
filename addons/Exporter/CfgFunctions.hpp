@@ -7,6 +7,7 @@ class DISExporter_Functions {
 		class ExporterInit {postInit = 1;}; // DISExporter_fnc_Exporterinit
 		class ExportData {}; // DISExporter_fnc_ExportData
 		class SendData {}; // DISExporter_fnc_SendData
+		class strToInt {}; // DISExporter_fnc_strToInt
 
 	};
 };
