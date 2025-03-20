@@ -30,8 +30,8 @@ private _deadMen = count allDeadMen;
 private _deadVh = (count allDead) - _deadMen; // count allDeadVehicles and dead agents
 
 Private _data = format[
-	"Time:%1;	Server:%2;	Mission:%3;	FPS:%4;		player:%5;	Blue:%6;	Red:%7;		Ind:%8;		Civ:%9;		Vl:%10;	DeadMen:%11;	DeadVh:%12",
-	_sysTime,	_servName,	_briefName,	_avergaeFPS,_player, 	_unitsBlue,	_unitsRed,	_unitsInd,	_unitsCiv,	_vl,	_deadMen,	_deadVh
+	"%1;%2;%3;%4;%5;%6;%7;%8;%9;%10;%11;%12",
+	_sysTime, _servName, _briefName, _avergaeFPS, _player, _unitsBlue, _unitsRed, _unitsInd, _unitsCiv, _vl, _deadMen, _deadVh
 ];
 
 [_data] call DISExporter_fnc_SendData;
