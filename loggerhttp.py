@@ -19,10 +19,12 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 		# Lire les données POST
 		post_data = self.rfile.read(content_length)
 
+		data = post_data[1:-1]
+
 		# Convertir les données POST en dictionnaire (si c'est du JSON)
-		print(post_data)
+		print(data)
 		with open(file_path, 'ab') as file:
-			file.write(post_data + b'\n')
+			file.write(data + b'\n')
 
 		# Envoyer une réponse HTTP avec le statut 200
 		self.send_response(200)
