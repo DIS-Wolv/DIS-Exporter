@@ -43,7 +43,7 @@ if (_headerMode) then {
 }
 else {
 	_data = format[
-		"%1;'%2';'%3';%4;%5;%6;%7;%8;%9;%10;%11;%12;%13,%14",
+		"%1;'%2';'%3';%4;%5;%6;%7;%8;%9;%10;%11;%12;%13;%14",
 		_sysTime, _servName, _briefName, _avergaeFPS, _allUnits, _player, _unitsBlue, _unitsRed, _unitsInd, _unitsCiv, _unitsComa, _vl, _deadMen, _deadVh
 	];
 };
