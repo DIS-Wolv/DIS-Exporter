@@ -18,7 +18,7 @@ private _strParts = (count _str) - 1;
 			
 			_strValue = _strValue + _x * (10 ^ (_strParts-_strIndex));
 		};
-	}foreach _number;
-} foreach _str;
+	} forEach _number;
+} forEach _str;
 
 _strValue;
