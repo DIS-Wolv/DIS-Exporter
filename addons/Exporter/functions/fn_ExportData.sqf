@@ -9,10 +9,10 @@
 
 params [["_headerMode", false], ["_force", false]];
 // only server can export data
-if (!_force) then {
-	if (!isServer) exitWith {};
-	if ((count allPlayers) == 0) exitWith {};
-};
+
+if (!_force and !isServer) exitWith {};
+if (!_force and !_headerMode and ((count allPlayers) == 0)) exitWith {};
+
 
 private _sysTime = systemTime;
 
