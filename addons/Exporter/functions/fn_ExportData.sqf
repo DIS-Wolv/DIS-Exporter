@@ -31,20 +31,23 @@ private _unitsInd = count units independent;
 private _unitsCiv = (count units civilian);
 
 private _unitsComa = {_x getVariable ["ACE_isUnconscious", false]} count allUnits;
-private _vl = {alive _x} count vehicles; 
+// get only alive vehicles
+private _vl = {alive _x and _x isKindOf "AllVehicles"} count vehicles;
+private _deadvl = {!(alive _x) and _x isKindOf "AllVehicles"} count vehicles;
+
 
 private _deadMen = count allDeadMen;
-private _deadVh = (count allDead) - _deadMen; // count allDeadVehicles and dead agents
+private _deadObj = (count allDead) - _deadMen - _deadvl; // count allDeadVehicles and dead agents
 
 Private _data = [];
 
 if (_headerMode) then {
-	_data = "'SysTime';'ServerName';'BriefingName';'AverageFPS';'AllUnits';'Players';'UnitsBlue';'UnitsRed';'UnitsInd';'UnitsCiv';'UnitsComa';'Vehicles';'DeadMen';'DeadVehicles'";
+	_data = "'SysTime';'ServerName';'BriefingName';'AverageFPS';'AllUnits';'Players';'UnitsBlue';'UnitsRed';'UnitsInd';'UnitsCiv';'UnitsComa';'Vehicles';'DeadMen';'DeadVehicles';'DeadObjects'";
 }
 else {
 	_data = format[
-		"%1;'%2';'%3';%4;%5;%6;%7;%8;%9;%10;%11;%12;%13;%14",
-		_sysTime, _servName, _briefName, _avergaeFPS, _allUnits, _player, _unitsBlue, _unitsRed, _unitsInd, _unitsCiv, _unitsComa, _vl, _deadMen, _deadVh
+		"%1;'%2';'%3';%4;%5;%6;%7;%8;%9;%10;%11;%12;%13;%14;%15",
+		_sysTime, _servName, _briefName, _avergaeFPS, _allUnits, _player, _unitsBlue, _unitsRed, _unitsInd, _unitsCiv, _unitsComa, _vl, _deadMen, _deadvl, _deadObj
 	];
 };
 
