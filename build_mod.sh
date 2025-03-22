@@ -15,6 +15,7 @@ FILES_TO_ADD=(
     "disMoto.jpg"
     "mod.cpp"
     "DllTest1_x64.dll"
+	"loggerhttp.py"
 )
 
 rm -rf @DIS-Exporter/
