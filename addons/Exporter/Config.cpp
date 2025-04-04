@@ -1,9 +1,7 @@
-
 class CfgFunctions
 {
 	#include "CfgFunctions.hpp"
 };
-
 
 class CfgPatches
 {
