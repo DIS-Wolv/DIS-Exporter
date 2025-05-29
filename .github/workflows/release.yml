@@ -28,37 +28,23 @@ jobs:
           retention-days: 7
 
   release:
-    runs-on: ubuntu-latest
-    container: steamcmd/steamcmd:alpine-3
+    runs-on: self-hosted
     needs: build
     steps:
-      - name: Download built mod artifact
+      - name: Download mod artifact
         uses: actions/download-artifact@v4
         with:
           name: "@DIS-Exporter"
           path: "@DIS-Exporter"
-      - name: Create VDF file
+
+      - name: Debug
+        run: |
+          dir @DIS-Exporter
+          echo $pwd
+          whoami
+      
+      - name: Mark to Upload
         env:
           WORKSHOP_ID: ${{ secrets.WORKSHOP_ID }}
         run: |
-          cat <<EOF > update.vdf
-          "workshopitem"
-          {
-          "appid" "107410"
-          "publishedfileid" "${WORKSHOP_ID}"
-          "contentfolder" "$(pwd)/@DIS-Exporter"
-          }
-          EOF
-      - name: Debug
-        run: |
-          cat update.vdf
-          find .
-      - name: Upload to Steam
-        env:
-          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
-          STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
-        run: >
-          steamcmd
-          "+login ${STEAM_USERNAME} ${STEAM_PASSWORD}"
-          "+workshop_build_item $(pwd)/update.vdf"
-          "+exit"
+          echo "$pwd\@DIS-Exporter|${{ secrets.WORKSHOP_ID }}" >> 'C:\Users\SteamCMD\Desktop\AutoUpdate\update.txt'
