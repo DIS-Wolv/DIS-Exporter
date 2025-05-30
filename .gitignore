@@ -1,5 +1,6 @@
 ._*
 *.pbo
-*.pbo.*
-@DIS-Exporter
+*.pbo.bak
+@*
+*.bisign
 *.csv
