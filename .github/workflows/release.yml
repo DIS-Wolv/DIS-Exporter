@@ -16,7 +16,7 @@ jobs:
 
       - name: Debug
         run: |
-          dir @DIS-Factions
+          dir @DIS-Exporter
           echo $pwd
           whoami
       
